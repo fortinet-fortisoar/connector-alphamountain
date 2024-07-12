@@ -1,0 +1,221 @@
+{
+  "name": "alphamountain",
+  "label": "alphaMountain",
+  "version": "1.0.0",
+  "category": "Threat Detection",
+  "description": "alphaMountain Threat Response integrates investigations informed by reputation scores of target hosts, domains, and IP addresses. It fetches indicators with risk scores and relevant content categorization.",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "publisher": "Fortinet",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "name": "server_url",
+        "type": "text",
+        "description": "Specify the Rest API endpoint URL of the alphaMountain server to connect and perform automated operations.",
+        "tooltip": "Specify the Rest API endpoint URL of the alphaMountain server to connect and perform automated operations.",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "https://api.alphamountain.ai"
+      },
+      {
+        "title": "API Key",
+        "name": "api_key",
+        "type": "text",
+        "tooltip": "Specify the API key to access the alphaMountain Rest API endpoint to which you will connect and perform the automated operations.",
+        "description": "Specify the API key to access the alphaMountain Rest API endpoint to which you will connect and perform the automated operations.",
+        "required": false,
+        "visible": true,
+        "editable": true
+      },
+      {
+        "title": "Verify SSL",
+        "name": "verify_ssl",
+        "type": "checkbox",
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True.",
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "Get Threat Score",
+      "operation": "get_threat_score",
+      "description": "Retrieve threat rating scores stored in the alphaMountain.ai cloud for the provided URL or URI",
+      "category": "investigation",
+      "annotation": "get_threat_score",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Input Type",
+          "name": "input_type",
+          "type": "select",
+          "description": "Select the input type to retrieve a single or multiple URL threat ratings stored in the alphaMountain.ai cloud",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "options": [
+            "Specific URL",
+            "Multiple URLs"
+          ],
+          "value": "Specific URL",
+          "onchange": {
+            "Specific URL": [
+              {
+                "title": "URL",
+                "name": "url",
+                "type": "text",
+                "description": "Provide a specific URI or URL to retrieve threat ratings scores stored in the alphaMountain.ai cloud",
+                "tooltip": "Provide a specific URI or URL to retrieve threat ratings scores stored in the alphaMountain.ai cloud",
+                "visible": true,
+                "required": true,
+                "editable": true
+              },
+              {
+                "title": "Scan Depth",
+                "name": "scan_depth",
+                "type": "select",
+                "description": "Select the scan depth to determine how thorough a real-time lookup should be performed. Each level may take more time to respond",
+                "tooltip": "Select the scan depth to determine how thorough a real-time lookup should be performed. Each level may take more time to respond",
+                "visible": true,
+                "required": true,
+                "editable": true,
+                "options": [
+                  "None",
+                  "Low",
+                  "Medium",
+                  "High"
+                ]
+              }
+            ],
+            "Multiple URLs": [
+              {
+                "title": "URLs",
+                "name": "urls",
+                "type": "text",
+                "description": "Specify the CSV list of URLs or URLs to retrieve threat ratings scores stored in the alphaMountain.ai cloud",
+                "tooltip": "Specify the CSV list of URLs or URLs to retrieve threat ratings scores stored in the alphaMountain.ai cloud",
+                "visible": true,
+                "required": true,
+                "editable": true
+              }
+            ]
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "title": "Get URL Categories",
+      "operation": "get_url_categories",
+      "description": "Fetch categories associated with an internet URL using alphaMountain's statistical and neural network models, validated across multiple sources. Note Category IDs are returned for performance reasons instead of textual category strings.",
+      "category": "investigation",
+      "annotation": "get_url_categories",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Input Type",
+          "name": "input_type",
+          "type": "select",
+          "description": "Select the input type to retrieve a single or multiple URL categories stored in the alphaMountain.ai cloud",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "options": [
+            "Specific URL",
+            "Multiple URLs"
+          ],
+          "value": "Specific URL",
+          "onchange": {
+            "Specific URL": [
+              {
+                "title": "URL",
+                "name": "url",
+                "type": "text",
+                "description": "Provide a specific URI or URL to categorize using alphaMountain.ai cloud",
+                "tooltip": "Provide a specific URI or URL to categorize using alphaMountain.ai cloud",
+                "visible": true,
+                "required": true,
+                "editable": true
+              }
+            ],
+            "Multiple URLs": [
+              {
+                "title": "URLs",
+                "name": "urls",
+                "type": "text",
+                "description": "Specify the CSV list of URLs or URLs to categorize using alphaMountain.ai cloud",
+                "tooltip": "Specify the CSV list of URLs or URLs to categorize using alphaMountain.ai cloud",
+                "visible": true,
+                "required": true,
+                "editable": true
+              }
+            ]
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "title": "Get Likely Impersonated Domain for a URL",
+      "operation": "identify_impersonation_detection",
+      "description": "Identifies domains that a URI may impersonate, crucial for detecting phishing, cyber-squatting, and typo domains.",
+      "category": "investigation",
+      "annotation": "identify_impersonation_detection",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "URL",
+          "name": "url",
+          "type": "text",
+          "description": "Provide a URI or URL to identify impersonations detection",
+          "tooltip": "Provide a URI or URL to identify impersonations detection",
+          "visible": true,
+          "required": true,
+          "editable": true
+        },
+        {
+          "title": "Limit",
+          "name": "limit",
+          "type": "text",
+          "description": "Provide a URI or URL to identify impersonations detection",
+          "tooltip": "Provide a URI or URL to identify impersonations detection",
+          "visible": true,
+          "required": true,
+          "editable": true
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "title": "Get Popularity of Domain",
+      "operation": "get_domain_popularity",
+      "description": "Retrieves the popularity ranking of a domain or hostname within the last 24 hours.",
+      "category": "investigation",
+      "annotation": "get_domain_popularity",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Domain",
+          "name": "domain",
+          "type": "text",
+          "description": "Provide a fully qualified domain name to retrieve the popularity.",
+          "tooltip": "Provide a fully qualified domain name to retrieve the popularity.",
+          "visible": true,
+          "required": true,
+          "editable": true
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}
