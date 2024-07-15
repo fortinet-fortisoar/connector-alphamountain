@@ -53,7 +53,37 @@
       "description": "Retrieve threat rating scores stored in the alphaMountain.ai cloud for the provided URL or URI",
       "category": "investigation",
       "annotation": "get_threat_score",
-      "output_schema": {},
+      "conditional_output_schema": [
+        {
+          "condition": "{{input_type === 'Specific URL'}}",
+          "output_schema": {
+            "version": "",
+            "status": {
+              "threat": ""
+            },
+            "threat": {
+              "score": "",
+              "scope": "",
+              "source": ""
+            },
+            "ttl": ""
+          }
+        },
+        {
+          "condition": "{{input_type === 'Multiple URLs'}}",
+          "output_schema": {
+            "version": "",
+            "status": {
+              "threat/uris": ""
+            },
+            "scores": {
+            }
+          },
+          "errors": {
+            "": ""
+          }
+        }
+      ],
       "parameters": [
         {
           "title": "Input Type",
@@ -120,7 +150,36 @@
       "description": "Fetch categories associated with an internet URL using alphaMountain's statistical and neural network models, validated across multiple sources. Note Category IDs are returned for performance reasons instead of textual category strings.",
       "category": "investigation",
       "annotation": "get_url_categories",
-      "output_schema": {},
+      "conditional_output_schema": [
+        {
+          "condition": "{{input_type === 'Specific URL'}}",
+          "output_schema": {
+            "version": "",
+            "status": {
+              "category": ""
+            },
+            "category": {
+              "categories": [],
+              "scope": "",
+              "confidence": ""
+            },
+            "ttl": ""
+          }
+        },
+        {
+          "condition": "{{input_type === 'Multiple URLs'}}",
+          "output_schema": {
+            "version": "",
+            "status": {
+              "category/uris": ""
+            },
+            "categories": {
+            }
+          },
+          "errors": {
+          }
+        }
+      ],
       "parameters": [
         {
           "title": "Input Type",
@@ -171,7 +230,14 @@
       "description": "Identifies domains that a URI may impersonate, crucial for detecting phishing, cyber-squatting, and typo domains.",
       "category": "investigation",
       "annotation": "identify_impersonation_detection",
-      "output_schema": {},
+      "output_schema": {
+        "version": "",
+        "status": {
+          "impersonate": ""
+        },
+        "impersonate": [],
+        "ttl": ""
+      },
       "parameters": [
         {
           "title": "URL",
@@ -202,7 +268,16 @@
       "description": "Retrieves the popularity ranking of a domain or hostname within the last 24 hours.",
       "category": "investigation",
       "annotation": "get_domain_popularity",
-      "output_schema": {},
+      "output_schema": {
+        "version": "",
+        "status": {
+          "popularity": ""
+        },
+        "popularity": {
+          "popularity": ""
+        },
+        "ttl": ""
+      },
       "parameters": [
         {
           "title": "Domain",
