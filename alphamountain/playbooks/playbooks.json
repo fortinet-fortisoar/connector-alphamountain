@@ -1,0 +1,330 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "67cdcf09-53bf-4bed-a65d-07f7f841ce6d",
+      "@type": "WorkflowCollection",
+      "name": "Sample - alphaMountain - 1.0.0",
+      "description": "alphaMountain Threat Response integrates investigations informed by reputation scores of target hosts, domains, and IP addresses. It fetches indicators with risk scores and relevant content categorization.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "alphamountain"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "73664470-7903-4c02-a2ab-e3d2b4f7b76d",
+          "collection": "/api/3/workflow_collections/67cdcf09-53bf-4bed-a65d-07f7f841ce6d",
+          "triggerLimit": null,
+          "description": "Retrieve threat rating scores stored in the alphaMountain.ai cloud for the provided URL or URI",
+          "name": "Get Threat Score",
+          "tag": "#alphaMountain",
+          "recordTags": [
+            "alphamountain"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/38a7d92f-0492-4325-9c8c-283db6b10b17",
+          "steps": [
+            {
+              "uuid": "38a7d92f-0492-4325-9c8c-283db6b10b17",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "a12792df-98da-4fee-bac1-305224b81323",
+                "title": "alphaMountain: Get Threat Score",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "9b47e865-5b06-4282-9ead-58fc4175aabb",
+              "@type": "WorkflowStep",
+              "name": "Get Threat Score",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "alphaMountain",
+                "config": "''",
+                "params": {
+                  "input_type": "Specific URL"
+                },
+                "version": "1.0.0",
+                "connector": "alphamountain",
+                "operation": "get_threat_score",
+                "operationTitle": "Get Threat Score",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "96452a04-68b7-459b-b06f-aed412be3cd2",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Threat Score",
+              "sourceStep": "/api/3/workflow_steps/38a7d92f-0492-4325-9c8c-283db6b10b17",
+              "targetStep": "/api/3/workflow_steps/9b47e865-5b06-4282-9ead-58fc4175aabb"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e50864da-1d17-467b-9eff-2f532490c8e0",
+          "collection": "/api/3/workflow_collections/67cdcf09-53bf-4bed-a65d-07f7f841ce6d",
+          "triggerLimit": null,
+          "description": "Fetch categories associated with an internet URL using alphaMountain's statistical and neural network models, validated across multiple sources. Note Category IDs are returned for performance reasons instead of textual category strings.",
+          "name": "Get URL Categories",
+          "tag": "#alphaMountain",
+          "recordTags": [
+            "alphamountain"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bcc6b5d6-1259-4788-b299-6d8504f20696",
+          "steps": [
+            {
+              "uuid": "bcc6b5d6-1259-4788-b299-6d8504f20696",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "935a06ac-08ad-427d-98af-b57748550949",
+                "title": "alphaMountain: Get URL Categories",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "7254f862-5314-4092-adf5-1fced6c736c4",
+              "@type": "WorkflowStep",
+              "name": "Get URL Categories",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "alphaMountain",
+                "config": "''",
+                "params": {
+                  "input_type": "Specific URL"
+                },
+                "version": "1.0.0",
+                "connector": "alphamountain",
+                "operation": "get_url_categories",
+                "operationTitle": "Get URL Categories",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "df1a9e5c-e27c-4b2e-a4c7-77e8b8c8a61f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get URL Categories",
+              "sourceStep": "/api/3/workflow_steps/bcc6b5d6-1259-4788-b299-6d8504f20696",
+              "targetStep": "/api/3/workflow_steps/7254f862-5314-4092-adf5-1fced6c736c4"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e3645d02-70af-49ee-a7d3-1e8abb040f59",
+          "collection": "/api/3/workflow_collections/67cdcf09-53bf-4bed-a65d-07f7f841ce6d",
+          "triggerLimit": null,
+          "description": "Identifies domains that a URI may impersonate, crucial for detecting phishing, cyber-squatting, and typo domains.",
+          "name": "Get Likely Impersonated Domain for a URL",
+          "tag": "#alphaMountain",
+          "recordTags": [
+            "alphamountain"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f533e5cb-2337-442f-810a-0f68845dffaa",
+          "steps": [
+            {
+              "uuid": "f533e5cb-2337-442f-810a-0f68845dffaa",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "0aae9651-8e1b-4d62-b74c-3760b08c81c4",
+                "title": "alphaMountain: Get Likely Impersonated Domain for a URL",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "91b36602-fa80-46b5-94ec-e519d228e6ad",
+              "@type": "WorkflowStep",
+              "name": "Get Likely Impersonated Domain for a URL",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "alphaMountain",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "alphamountain",
+                "operation": "identify_impersonation_detection",
+                "operationTitle": "Get Likely Impersonated Domain for a URL",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "574b0231-27a6-4d70-9f58-7475d1ab6c0e",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Likely Impersonated Domain for a URL",
+              "sourceStep": "/api/3/workflow_steps/f533e5cb-2337-442f-810a-0f68845dffaa",
+              "targetStep": "/api/3/workflow_steps/91b36602-fa80-46b5-94ec-e519d228e6ad"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6851ee63-6cd8-4a46-8c9f-597af15be7be",
+          "collection": "/api/3/workflow_collections/67cdcf09-53bf-4bed-a65d-07f7f841ce6d",
+          "triggerLimit": null,
+          "description": "Retrieves the popularity ranking of a domain or hostname within the last 24 hours.",
+          "name": "Get Popularity of Domain",
+          "tag": "#alphaMountain",
+          "recordTags": [
+            "alphamountain"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d89f8a23-8df7-43d4-aacf-dc612409780d",
+          "steps": [
+            {
+              "uuid": "d89f8a23-8df7-43d4-aacf-dc612409780d",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "7e8c864c-0652-47dd-a4d2-e2204f12fd5a",
+                "title": "alphaMountain: Get Popularity of Domain",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "89cd3a33-dc2d-4ded-8766-c335e7d49ba6",
+              "@type": "WorkflowStep",
+              "name": "Get Popularity of Domain",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "alphaMountain",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "alphamountain",
+                "operation": "get_domain_popularity",
+                "operationTitle": "Get Popularity of Domain",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "52fa9c45-1734-4158-a2c1-81c50ffd2533",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Popularity of Domain",
+              "sourceStep": "/api/3/workflow_steps/d89f8a23-8df7-43d4-aacf-dc612409780d",
+              "targetStep": "/api/3/workflow_steps/89cd3a33-dc2d-4ded-8766-c335e7d49ba6"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
