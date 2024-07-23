@@ -50,7 +50,7 @@
 <p>You can use the following automated operations in playbooks and also use the annotations to access operations:</p>
 
 <table border=1><thead><tr><th>Function</th><th>Description</th><th>Annotation and Category</th></tr></thead><tbody><tr><td>Get Threat Score</td><td>Retrieve threat rating scores stored in the alphaMountain.ai cloud for the provided URL or URI</td><td>get_threat_score <br/>Investigation</td></tr>
-<tr><td>Get URL Categories</td><td>Fetch categories associated with an internet URL using alphaMountain's statistical and neural network models, validated across multiple sources. Note Category IDs are returned for performance reasons instead of textual category strings.</td><td>get_url_categories <br/>Investigation</td></tr>
+<tr><td>Get URL Categories</td><td>Fetch categories associated with an internet URL using alphaMountain's statistical and neural network models, validated across multiple sources.<br> <strong>Note</strong> Category IDs are returned for performance reasons instead of textual category strings.</td><td>get_url_categories <br/>Investigation</td></tr>
 <tr><td>Get Likely Impersonated Domain for a URL</td><td>Identifies domains that a URI may impersonate, which is crucial for detecting phishing, cyber-squatting, and typo domains.
  </td><td>identify_impersonation_detection <br/>Investigation</td></tr>
 <tr><td>Get Popularity of Domain</td><td>Retrieves the popularity ranking of a domain or hostname within the last 24 hours.</td><td>get_domain_popularity <br/>Investigation</td></tr>
@@ -183,3 +183,5 @@
 </ul>
 
 <p><strong>Note</strong>: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection since the sample playbook collection gets deleted during connector upgrade and delete.</p>
+
+This is some **bold text**
