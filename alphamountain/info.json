@@ -9,7 +9,7 @@
   "publisher": "Fortinet",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-alphamountain/blob/release/1.0.0/docs/alphaMountain.md",
   "configuration": {
     "fields": [
       {
@@ -29,7 +29,7 @@
         "type": "text",
         "tooltip": "Specify the API key to access the alphaMountain Rest API endpoint to which you will connect and perform the automated operations.",
         "description": "Specify the API key to access the alphaMountain Rest API endpoint to which you will connect and perform the automated operations.",
-        "required": false,
+        "required": true,
         "visible": true,
         "editable": true
       },
@@ -227,7 +227,7 @@
     {
       "title": "Get Likely Impersonated Domain for a URL",
       "operation": "identify_impersonation_detection",
-      "description": "Identifies domains that a URI may impersonate, crucial for detecting phishing, cyber-squatting, and typo domains.",
+      "description": "Identifies domains that a URI may impersonate, which is crucial for detecting phishing, cyber-squatting, and typo domains.",
       "category": "investigation",
       "annotation": "identify_impersonation_detection",
       "output_schema": {
@@ -253,8 +253,8 @@
           "title": "Limit",
           "name": "limit",
           "type": "text",
-          "description": "Provide a URI or URL to identify impersonations detection",
-          "tooltip": "Provide a URI or URL to identify impersonations detection",
+          "description": "Specify the maximum number of impersonation domains to return in response (maximum of 20)",
+          "tooltip": "Specify the maximum number of impersonation domains to return in response (maximum of 20)",
           "visible": true,
           "required": true,
           "editable": true

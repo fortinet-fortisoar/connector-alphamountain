@@ -175,7 +175,7 @@
           "uuid": "e3645d02-70af-49ee-a7d3-1e8abb040f59",
           "collection": "/api/3/workflow_collections/67cdcf09-53bf-4bed-a65d-07f7f841ce6d",
           "triggerLimit": null,
-          "description": "Identifies domains that a URI may impersonate, crucial for detecting phishing, cyber-squatting, and typo domains.",
+          "description": "Identifies domains that a URI may impersonate, which is crucial for detecting phishing, cyber-squatting, and typo domains.",
           "name": "Get Likely Impersonated Domain for a URL",
           "tag": "#alphaMountain",
           "recordTags": [
